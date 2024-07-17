@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -23,8 +22,14 @@ const userSchema = new mongoose.Schema({
     },
     cnicNumber: {
         type: Number,
+        unique: true,
         required: true,
-        unqiue: true
+        validate: {
+            validator: function (v) {
+                return /^\d{13}$/.test(v.toString());
+            },
+            message: props => `${props.value} is not a valid CNIC number! It must be exactly 13 digits.`
+        }
     },
     password: {
         type: String,
@@ -41,33 +46,32 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-
-userSchema.pre('save', async function(next){
+userSchema.pre('save', async function (next) {
     const person = this;
 
     // Hash the password only if it has been modified (or is new)
-    if(!person.isModified('password')) return next();
-    try{
-        // hash password generation
+    if (!person.isModified('password')) return next();
+    try {
+        // Hash password generation
         const salt = await bcrypt.genSalt(10);
 
-        // hash password
+        // Hash password
         const hashedPassword = await bcrypt.hash(person.password, salt);
-        
+
         // Override the plain password with the hashed one
         person.password = hashedPassword;
         next();
-    }catch(err){
+    } catch (err) {
         return next(err);
     }
-})
+});
 
-userSchema.methods.comparePassword = async function(candidatePassword){
-    try{
+userSchema.methods.comparePassword = async function (candidatePassword) {
+    try {
         // Use bcrypt to compare the provided password with the hashed password
         const isMatch = await bcrypt.compare(candidatePassword, this.password);
         return isMatch;
-    }catch(err){
+    } catch (err) {
         throw err;
     }
 }
