@@ -1,10 +1,3 @@
-voting application
-WHAT ???
-A functionality where user can give vote to the given set of candidates
-
-
-Models?
-Routes?
 
 voting app functionality
 
