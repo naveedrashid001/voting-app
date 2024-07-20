@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        .d-flex li{
+            text-decoration: none;
+            display: flex;
+            
+
+        }
+        .d-flex li a{
+            color: black;
+            
+        }
+        .card{
+            width: 100%;
+            height: 100px;
+        }
+    </style>
+    <title>Vote Count Result</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6fanmJbPaQHfiJsN0xxaQ_S2ZwmD6-KZpeQ&s" />
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand ms-4 fw-bold">Voting App</a>
+          
+          <div class="d-flex">
+            <li class=""><a class="nav-link mt-2" href="/candidate/home">Home</a></li>
+                            
+          <li class=""><a class="nav-link mt-2" href="/candidate/candaidatelist">Condaidate</a></li>
+          <li class=""><a class="nav-link mt-2" href="/candidate/aboutme">About Me</a></li>
+          </div>
+          
+        </div>
+      </nav>
+
+    <div class="container">
+        <div class="row mt-5 ">
+            <div class="col  ">
+                <h2 class="fw-bolder mb-5">Vote Count</h2>
+                    <% voteRecord.forEach(function(record) { %>
+                        <p class="text-left mb-5"><%= record.party %>: Total Votes <%= record.count %> </p>
+                    <% }) %>
+                    <a href="/candidate/votecount"> <button class="btn btn-primary ps-4 pe-4 ">Refresh</button></a>
+            </div>
+            <div class="col">
+                <div class="card mt-4">
+                    <!-- pti plag -->
+                    <img class="mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbF-Ty1eu7dBr9UU5eJEzGS7TjgBUzYV4C7Kpp8h2R0aG07bUFNiil-GGkBPFVEr2WjCI&usqp=CAU" height="160px" alt="">
+
+                    <!-- pml n palg -->
+                    <img class="mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQArSePfY-iEoWKxX3rI6FIxIsmleJSnKxiMg&s" height="160px" alt="">
+
+                    <!-- mqm plag -->
+                    <img class="mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjs5IQ7aG2FdQR3dqOIvaFIFwm3osWyuskvA&s" height="160px" alt="">
+
+                    <!-- ji palg -->
+                    <img class="mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6iZDaI-ds-OMXMc_BjVrNbw26ZKrJtXsm9Q&s" height="160px" alt="">
+                </div>
+              </div>
+            <div class="col">
+                <div class="card mt-4">
+                    <!-- anp palg -->
+                    <img class="mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbOGNMBd1-9GRBfmi7LkbUR9HFMNzuHxA0-Q&s" height="160px" alt="">
+                    <!-- pp plag -->
+                    <img class="mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN5McrbzP94OcCg_thaU-VOhQD_yF7nM2SZw&s" height="160px" alt="">
+                     <!-- JUI palg -->
+                     <img class="mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKIG-Z1pmPDJQaBxCMbQ0OTMKPLNbKyo1tnw&s" height="160px" alt="">
+                     <!-- PML Q plag -->
+                     <img class="mb-3" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwhftXZgFksxVVH8U9MBHfKNq-Q9rVwzzx091AoSAuXWo65wa66t78LqYYD9GfAR58LSs&usqp=CAU" height="160px" alt="">
+                </div> 
+            </div>
+
+        </div>
+    </div>
+
+    <!-- footer? -->
+    <footer class="bg-white py-4 mt-5">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto"><div class="small m-0">Copyright &copy; voting - 2024</div></div>
+                <div class="col-auto">
+                    <a class="small" href="#!">Privacy</a>
+                    <span class="mx-1">&middot;</span>
+                    <a class="small" href="#!">Terms</a>
+                    <span class="mx-1">&middot;</span>
+                    <a class="small" href="#!">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+</body>
+
+
+</html>

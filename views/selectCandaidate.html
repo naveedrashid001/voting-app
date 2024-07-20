@@ -1,0 +1,361 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/candidate/vote" method="post">
+
+        <label for="candidate">select your Cndidate</label>
+
+        <select id="candidate">
+            <option value="imran khan">imran khan</option>
+            <option value="shehbaz shareef">shehbaz shareef</option>
+            <option value="bilawal bhutto">bilawal bhutto</option>
+            <option value="khalid maqbool">khalid maqbool</option>
+            <option value="fazl ur rahman">fazl ur rahman</option>
+            <option value="Shujaat Hussain">Shujaat Hussain</option>
+            <option value="hafiz naeem ur rehman">hafiz naeem ur rehman</option>
+            <option value="Aimal Wali Khan">Aimal Wali Khan</option>
+
+
+        </select>
+    </form>
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Voting App</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #000;
+    }
+
+    section {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2px;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(#000, #0f0, #000);
+      animation: animate 5s linear infinite;
+    }
+
+    @keyframes animate {
+      0% {
+        transform: translateY(-100%);
+      }
+
+      100% {
+        transform: translateY(100%);
+      }
+    }
+
+    section span {
+      position: relative;
+      display: block;
+      width: calc(6.25vw - 2px);
+      height: calc(6.25vw - 2px);
+      background: #181818;
+      z-index: 2;
+      transition: 1.5s;
+    }
+
+    section span:hover {
+      background: #0f0;
+      transition: 0s;
+    }
+
+    section .signin {
+      position: absolute;
+      width: 400px;
+      background: #222;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      border-radius: 4px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 9);
+    }
+
+    section .signin .content {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    section .signin .content h2 {
+      font-size: 2em;
+      color: #0f0;
+      text-transform: uppercase;
+    }
+
+    section .signin .content .form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    section .signin .content .form .inputBox {
+      position: relative;
+      width: 100%;
+    }
+
+    section .signin .content .form .inputBox input {
+      position: relative;
+      width: 100%;
+      background: #333;
+      border: none;
+      outline: none;
+      padding: 25px 10px 7.5px;
+      border-radius: 4px;
+      color: #fff;
+      font-weight: 500;
+      font-size: 1em;
+    }
+
+    section .signin .content .form .inputBox i {
+      position: absolute;
+      left: 0;
+      padding: 15px 10px;
+      font-style: normal;
+      color: #aaa;
+      transition: 0.5s;
+      pointer-events: none;
+    }
+
+    .signin .content .form .inputBox input:focus~i,
+    .signin .content .form .inputBox input:valid~i {
+      transform: translateY(-7.5px);
+      font-size: 0.8em;
+      color: #fff;
+    }
+
+    .signin .content .form .links {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .signin .content .form .links a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .signin .content .form .links a:nth-child(2) {
+      color: #0f0;
+      font-weight: 600;
+    }
+
+    .signin .content .form .inputBox input[type="submit"] {
+      padding: 10px;
+      background: #0f0;
+      color: #000;
+      font-weight: 600;
+      font-size: 1.35em;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:active {
+      opacity: 0.6;
+    }
+
+    @media (max-width: 900px) {
+      section span {
+        width: calc(10vw - 2px);
+        height: calc(10vw - 2px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      section span {
+        width: calc(20vw - 2px);
+        height: calc(20vw - 2px);
+      }
+    }
+
+    .inputBox input {
+      margin-bottom: 15px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <section>
+
+ 
+     <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span>
+    <span></span>
+
+    <div class="signin">
+
+      <div class="content">
+
+
+
+        <div class="form text-white">
+          <form id="votingForm" method="post">
+            <h3 class="text-center">Voting - 2024</h3>
+            <label for="candidate" class="mt-3 text-center">Select your Candidate</label>
+            <br>
+            <select id="candidate" name="candidate" style="padding: 10px; font-weight: bolder;" class="form-control">
+              <option value="6696f72ecfb694c7c304a5fb">Imran Khan (PTI)</option>
+              <option value="66970b90a7a94533c66b2730">Shehbaz Shareef (PML-N)</option>
+              <option value="66970bc3a7a94533c66b2733">Bilawal Bhutto (PPP)</option>
+              <option value="66970bf5a7a94533c66b2736">Khalid Maqbool (MQM-P)</option>
+              <option value="66970c2ca7a94533c66b2739">Fazl Ur Rahman (JUI-F)</option>
+              <option value="66970ca4a7a94533c66b273f">Shujaat Hussain (JI)</option>
+              <option value="66970c57a7a94533c66b273c">Hafiz Naeem Ur Rehman (PML-Q)</option>
+              <option value="66970cc0a7a94533c66b2742">Aimal Wali Khan (ANP)</option>
+            </select>
+            <br>
+            <div>
+              <br>
+              <input type="submit" id="submit" name="submit" value="Submit" class="btn btn-primary form-control">
+            </div>
+          </form>
+          <div> <a href="/user/profile" style="padding-left: 90px;">Back To Profile</a>
+           </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+    <script>
+ document.getElementById('votingForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    const candidate = document.getElementById('candidate').value;
+    const form = event.target;
+    const actionUrl = `/candidate/vote/${encodeURIComponent(candidate)}`;
+
+    fetch(actionUrl, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Show the server response message in an alert
+        alert(data.message || 'An unexpected error occurred');
+    })
+    .catch((error) => {
+        // Show any fetch errors in an alert
+        alert('Network error: ' + error.message);
+    });
+});
+
+
+    </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>

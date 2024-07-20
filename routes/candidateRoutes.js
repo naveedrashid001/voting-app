@@ -4,6 +4,63 @@ const User = require('./../models/user'); // Make sure this path is correct
 const Candidate = require('../models/candidate');
 const { jwtAuthMiddleware, generateToken } = require('./../jwt');
 
+const path = require('path');
+
+// home page
+router.get('/home', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, '..', 'views', 'index.html');
+        return res.sendFile(filePath);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ err: "Internal Server Error" });
+    }
+});
+// about Me
+router.get('/aboutme', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, '..', 'views', 'aboutme.html');
+        return res.sendFile(filePath);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ err: "Internal Server Error" });
+    }
+});
+
+// Candidate list route
+router.get('/candaidatelist', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, '..', 'views', 'Condaidate.html');
+        return res.sendFile(filePath);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ err: "Internal Server Error" });
+    }
+});  
+
+// 
+
+// go to show login form
+router.get('/loginform', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, '..', 'views', 'login.html');
+        return res.sendFile(filePath);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ err: "Internal Server Error" });
+    }
+});
+
+// go to select condaide form
+router.get('/condaideform', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, '..', 'views', 'selectCandaidate.html');
+        return res.sendFile(filePath);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ err: "Internal Server Error" });
+    }
+});
 
 // cheek admain validation
 const checkAdminRole = async (userID) => {
@@ -86,64 +143,87 @@ router.delete('/:candidateID', jwtAuthMiddleware, async (req, res) => {
 });
 
 
-// voting start
-
 router.post('/vote/:candidateID', jwtAuthMiddleware, async (req, res) => {
-    candidateID = req.params.candidateID;
-    userId = req.user.id;
+    const candidateID = req.params.candidateID;
+    const userId = req.user.id;
+
     try {
         const candidate = await Candidate.findById(candidateID);
         if (!candidate) {
-            return res.status(404).json({ message: 'candaidate id incorrect' });
+            return res.status(404).json({ message: 'Candidate ID incorrect' });
         }
         const user = await User.findById(userId);
         if (!user) {
-            return res.status(404).json({ message: 'user id incorrect' });
+            return res.status(404).json({ message: 'User ID incorrect' });
         }
-        if (user.role == 'admin') {
-            return res.status(404).json({ message: 'admin can not give vote' });
+        if (user.role === 'admin') {
+            return res.status(403).json({ message: 'Admin cannot vote' });
         }
         if (user.isVoted) {
-            return res.status(404).json({ message: 'you can not give vote again' });
+            return res.status(403).json({ message: 'You cannot vote again' });
         }
 
-        // update candidate doucment
+        // Update candidate document
         candidate.votes.push({ user: userId });
-        candidate.voteCount++
+        candidate.voteCount++;
         await candidate.save();
 
-        // update user doucment
-        user.isVoted=true;
-        user.save();
+        // Update user document
+        user.isVoted = true;
+        await user.save();
 
-        res.status(200).json({ message: 'you give voted successfully' });
+        res.status(200).json({ message: 'You voted successfully' });
     } catch (err) {
         console.log(err);
         res.status(500).json({ err: "Internal Server Error" });
     }
 });
 
- // vote count
-router.get('/vote/count', async (req, res) => {
-    
+// show vote count page 
+router.get('/votecount', async (req, res) => {
     try {
-        const candidate = await Candidate.find().sort({voteCount: 'desc'});;
-        if (!candidate) {
-            return res.status(404).json({ message: 'ther is no candaidate in database' });
-        }
-        const voteRecord = candidate.map((data)=>{
+        // Find all candidates and sort them by voteCount in descending order
+        const candidate = await Candidate.find().sort({ voteCount: 'desc' });
+
+        // Map the candidates to only return their name and voteCount
+        const voteRecord = candidate.map((data) => {
             return {
                 party: data.party,
-            count: data.voteCount
-            }
-            
-        })
-        return res.status(200).json(voteRecord);
+                count: data.voteCount
+            };
+        });
+
+        // Render the count.ejs template and pass the voteRecord data
+        res.render('count', { title: 'count', voteRecord: voteRecord });
     } catch (err) {
         console.log(err);
         res.status(500).json({ err: "Internal Server Error" });
     }
 });
+
+
+ // vote count
+//  router.get('/vote/count', async (req, res) => {
+//     try {
+//         // Find all candidates and sort them by voteCount in descending order
+//         const candidate = await Candidate.find().sort({ voteCount: 'desc' });
+
+//         // Map the candidates to only return their name and voteCount
+//         const voteRecord = candidate.map((data) => {
+//             return {
+//                 party: data.party,
+//                 count: data.voteCount
+//             };
+//         });
+
+        
+//         return res.redirect('/candidate/user/votecount');
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// });
+
 
 // find all candaidate
 router.get('/', async (req, res) => {

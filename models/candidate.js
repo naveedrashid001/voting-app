@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 const candidateSchema = new mongoose.Schema({
     name: {
         type: String,
-        enum: ['imran khan', 'shehbaz shareef', 'bilawal bhutto', 'khalid maqbool', 'fazl ur rahman', 'hafiz naeem ur rehman', 'Shujaat Hussain', 'Aimal Wali Khan' ],
+        enum: ['imran khan', 'shehbaz shareef', 'bilawal bhutto', 'khalid maqbool', 'fazl ur rahman', 'hafiz naeem ur rehman', 'Shujaat Hussain', 'Aimal Wali Khan'],
         required: true,
         unique: true
     },
     party: {
         type: String,
-        enum: ['PTI', 'PML-N', 'PPP', 'MQM-P','JUI-F', 'JI', 'PML-Q', 'ANP'],
+        enum: ['PTI', 'PML-N', 'PPP', 'MQM-P', 'JUI-F', 'JI', 'PML-Q', 'ANP'],
         required: true,
         unique: true
     },
@@ -26,7 +26,7 @@ const candidateSchema = new mongoose.Schema({
             },
             votedAt: {
                 type: Date,
-                default: Date.now()
+                default: Date.now
             }
         }
     ],

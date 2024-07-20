@@ -1,0 +1,36 @@
+// show vote count page 
+router.get('/votecount', (req, res) => {
+    try {
+        const filePath = path.join(__dirname, '..', 'views', 'votecount.html');
+        return res.sendFile(filePath);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ err: "Internal Server Error" });
+    }
+});
+
+ // vote count
+ router.get('/vote/count', async (req, res) => {
+    try {
+        // Find all candidates and sort them by voteCount in descending order
+        const candidate = await Candidate.find().sort({ voteCount: 'desc' });
+
+        // Map the candidates to only return their name and voteCount
+        const voteRecord = candidate.map((data) => {
+            return {
+                party: data.party,
+                count: data.voteCount
+            };
+        });
+
+        // Optionally, you can store the voteRecord in the session or a temporary variable
+        // before redirecting, if you need to use this data on the votecount.html page
+
+        // return res.status(200).json(voteRecord);
+        // Redirect to the votecount.html page
+        return res.redirect('/candidate/user/votecount');
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
