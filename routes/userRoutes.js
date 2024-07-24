@@ -47,6 +47,10 @@ router.post('/signup', async (req, res) => {
         if (existingEmail) {
             return res.status(400).json({ err: "Email already registered" });
         }
+         // Check password length
+         if (data.password.length < 8) {
+            return res.status(400).json({ err: "Password Must Be At Least 8 Characters" });
+        }
 
         // Create and save the new user
         const newUser = new User(data);
@@ -169,6 +173,9 @@ router.put('/profile/password', jwtAuthMiddleware, async (req, res) => {
 
         if (!currentpassword || !newpassword) {
             return res.status(400).json({ error: "Set new password" });
+        }
+        if (newpassword.length < 7) {
+            return res.status(400).json({ error: "Password Must Be At Least 8 Characters" });
         }
 
         const user = await User.findById(userid);
