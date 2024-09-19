@@ -1,5 +1,8 @@
+# run on 
 
-voting app functionality
+http://localhost:3000/
+
+# voting app functionality
 
 1. user sign in / sign up
 2. see the list of candidate
