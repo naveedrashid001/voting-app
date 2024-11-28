@@ -142,7 +142,7 @@ router.delete('/:candidateID', jwtAuthMiddleware, async (req, res) => {
     }
 });
 
-
+// applay for vote
 router.post('/vote/:candidateID', jwtAuthMiddleware, async (req, res) => {
     const candidateID = req.params.candidateID;
     const userId = req.user.id;

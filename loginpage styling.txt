@@ -1,0 +1,68 @@
+import React from 'react'
+import { useEffect } from 'react';
+
+function LogIn({setSelectedPage}) {
+  useEffect(() => {
+    setSelectedPage('LogIn');
+  }, [setSelectedPage]);
+  return (
+    <>
+      <section className="py-5">
+        <div className="container px-5">
+          {/* <!-- Contact form--> */}
+          <div className="bg-light rounded-4 py-5 px-4 px-md-5">
+            <div className="text-center mb-5">
+              {/* <!-- Flag image with Bootstrap class for responsive scaling --> */}
+              <div>
+                <img
+                  className="img-fluid rounded-3 mb-3"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjsU9I6rvcOTugnfsbL9l8L8OnW9ZlE7qdyg&s"
+                  alt="Flag"
+                  style={{ width: '100px' }}
+                />
+              </div>
+              <h1 className="fw-bolder">Become a Voter</h1>
+              {/* <p className="lead fw-normal text-muted mb-0">Become a Voter</p> */}
+            </div>
+            <div className="row gx-5 justify-content-center">
+              <div className="col-lg-8 col-xl-6">
+                {/* <!-- Login Form --> action="/user/login" */}
+                <form id="loginForm" method="post" > 
+                  {/* <!-- CNIC number input --> */}
+                  <div className="form-floating mb-3">
+                    <input
+                      className="form-control"
+                      id="cnicNumber"
+                      name="cnicNumber"
+                      type="text"
+                      placeholder="Enter CNIC number"
+                      required
+                    />
+                    <label htmlFor="cnicNumber">CNIC Number</label>
+                  </div>
+                  {/* <!-- Password input --> */}
+                  <div className="form-floating mb-3">
+                    <input
+                      className="form-control"
+                      name="password"
+                      id="password"
+                      type="password"
+                      placeholder="Enter Password"
+                      required
+                    />
+                    <label htmlFor="password">Password</label>
+                  </div>
+                  {/* <!-- Submit Button --> */}
+                  <input className="btn btn-primary btn-lg w-100" type="submit" value="Submit" />
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
+
+export default LogIn;
+
